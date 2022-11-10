@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.PrescriptionMedicine>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" asp-route-prescriptionId="@ViewBag.PrescriptionId">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.medicine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dose)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.noOfTablets)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.PrescriptionAssociated)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.medicine.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dose)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.noOfTablets)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.PrescriptionAssociated.Id)
+            </td>*@
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { prescriptionId=item.PrescriptionId, medId=item.medicineId }) |
+                    @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { prescriptionId=item.PrescriptionId, medId=item.medicineId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<p>
+    <a asp-controller="Prescriptions" asp-action="Index" >Back to Prescriptions</a>
+</p>

@@ -1,0 +1,46 @@
+﻿@model HospitalManagementSystem.Models.PrescriptionMedicine
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PrescriptionMedicine</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="PrescriptionMedicines" asp-action="Create" asp-route-id="@ViewBag.PrescriptionId">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="medicineId" class="control-label"></label>
+                <select asp-for="medicineId" class ="form-control" asp-items="ViewBag.medicineId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="dose" class="control-label"></label>
+                <input asp-for="dose" class="form-control" />
+                <span asp-validation-for="dose" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="noOfTablets" class="control-label"></label>
+                <input asp-for="noOfTablets" class="form-control" />
+                <span asp-validation-for="noOfTablets" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrescriptionId" class="control-label"></label>
+                <input asp-for="PrescriptionId" class ="form-control" value="@ViewBag.PrescriptionId" readonly/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-prescriptionId="@ViewBag.PrescriptionId">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

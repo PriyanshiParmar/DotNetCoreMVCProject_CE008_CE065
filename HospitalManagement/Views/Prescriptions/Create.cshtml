@@ -1,0 +1,75 @@
+﻿@model HospitalManagementSystem.Models.Prescription
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@*<script>
+    function GetData(url, method, datatype)
+    {
+        var response;
+        $.ajax({
+            async: false,
+            type: method,
+            url: url,
+            datatype: datatype,
+            contentType: "application/json",
+            success: function(res){response: res;}
+            error: function (err){response: err;}
+        });
+        return response;
+    }
+    $(document).ready(function (){
+        LoadMedicines("@Url.Action("Create","PrescriptionMedicine")");
+    })
+    function LoadMedicines(loadurl){
+        var htmlcontent = GetData(loadurl, "GET", "html");
+        $("#contentPlace").html(htmlcontent);
+    }
+</script>*@
+
+<h1>Create</h1>
+
+<h4>Prescription</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PatientId" class="control-label"></label>
+                <select asp-for="PatientId" class ="form-control" asp-items="ViewBag.PatientId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            @*<table>
+                <thead>
+                    <tr>
+                        <td>Medicine Id</td>
+                        <td>Dose</td>
+                        <td>No of tablets</td>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.MedicinesList)
+                {
+                    <tr>@</tr>
+                }
+            </table>*@
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
